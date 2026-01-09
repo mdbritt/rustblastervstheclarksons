@@ -1,0 +1,10 @@
+^C:\USERS\MIKE\.CARGO\REGISTRY\SRC\INDEX.CRATES.IO-1949CF8C6B5B557F\RAYLIB-SYS-5.5.1\RAYLIB\SRC\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/mike/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/raylib-sys-5.5.1/raylib -BC:/Users/mike/Documents/code/clauderustlol/rust_blaster/target/release/build/raylib-sys-2261302a664fa491/out/build --check-stamp-file C:/Users/mike/Documents/code/clauderustlol/rust_blaster/target/release/build/raylib-sys-2261302a664fa491/out/build/raylib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,1 @@
+C:\Users\mike\Documents\code\clauderustlol\rust_blaster\target\release\build\raylib-sys-2261302a664fa491\out\build\raylib\external\glfw\src\glfw.dir\Release\glfw.lib

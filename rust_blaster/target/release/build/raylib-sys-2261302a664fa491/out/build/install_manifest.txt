@@ -1,0 +1,7 @@
+C:/Users/mike/Documents/code/clauderustlol/rust_blaster/target/release/build/raylib-sys-2261302a664fa491/out/lib/raylib.lib
+C:/Users/mike/Documents/code/clauderustlol/rust_blaster/target/release/build/raylib-sys-2261302a664fa491/out/include/raylib.h
+C:/Users/mike/Documents/code/clauderustlol/rust_blaster/target/release/build/raylib-sys-2261302a664fa491/out/include/rlgl.h
+C:/Users/mike/Documents/code/clauderustlol/rust_blaster/target/release/build/raylib-sys-2261302a664fa491/out/include/raymath.h
+C:/Users/mike/Documents/code/clauderustlol/rust_blaster/target/release/build/raylib-sys-2261302a664fa491/out/lib/pkgconfig/raylib.pc
+C:/Users/mike/Documents/code/clauderustlol/rust_blaster/target/release/build/raylib-sys-2261302a664fa491/out/lib/cmake/raylib/raylib-config-version.cmake
+C:/Users/mike/Documents/code/clauderustlol/rust_blaster/target/release/build/raylib-sys-2261302a664fa491/out/lib/cmake/raylib/raylib-config.cmake

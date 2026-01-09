@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\mike\Documents\code\clauderustlol\rust_blaster\target\release\build\raylib-sys-2261302a664fa491\out\build\CMakeFiles\feb80ff3c4c9865a2f64f309be28805c\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{7AA83944-26A1-31D9-97F9-D27E10F42717}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

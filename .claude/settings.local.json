@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cargo init:*)",
+      "Bash(cargo build:*)",
+      "Bash(/c/Users/mike/.cargo/bin/cargo.exe --version)",
+      "Bash(cmd.exe /c \"cargo --version\")",
+      "Bash(cmd.exe /c \"cargo build --release\")",
+      "Bash(cmd.exe /c \"cd /d C:\\\\\\\\Users\\\\\\\\mike\\\\\\\\Documents\\\\\\\\code\\\\\\\\clauderustlol\\\\\\\\rust_blaster && cargo build --release\":*)"
+    ]
+  }
+}

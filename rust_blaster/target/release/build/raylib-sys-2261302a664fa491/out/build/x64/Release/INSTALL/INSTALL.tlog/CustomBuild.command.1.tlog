@@ -1,0 +1,10 @@
+^C:\USERS\MIKE\DOCUMENTS\CODE\CLAUDERUSTLOL\RUST_BLASTER\TARGET\RELEASE\BUILD\RAYLIB-SYS-2261302A664FA491\OUT\BUILD\CMAKEFILES\943B14DBA6BF438C12B173E96BF99187\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
