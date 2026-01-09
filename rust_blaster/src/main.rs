@@ -124,8 +124,8 @@ impl Weapon {
                ammo: 200, max_ammo: 200, pellets: 1, explosive: false, last_shot: 0.0 }
     }
     fn rocket() -> Self {
-        Self { wtype: WeaponType::Rocket, damage: 80.0, fire_rate: 0.7, spread: 0.0,
-               ammo: 8, max_ammo: 8, pellets: 1, explosive: true, last_shot: 0.0 }
+        Self { wtype: WeaponType::Rocket, damage: 250.0, fire_rate: 0.5, spread: 0.0,
+               ammo: 20, max_ammo: 20, pellets: 1, explosive: true, last_shot: 0.0 }
     }
     fn can_fire(&self, time: f64) -> bool {
         time - self.last_shot >= 1.0 / self.fire_rate as f64 && (self.ammo > 0 || self.ammo < 0)
@@ -1013,20 +1013,44 @@ fn update_projectiles(world: &mut World, dt: f32) {
 }
 
 fn explode(world: &mut World, pos: Vec3, damage: f32) {
-    let radius = 5.0;
-    world.screen_shake = 0.4;
+    let radius = 10.0; // Massive blast radius
+    world.screen_shake = 0.8; // Big screen shake
 
-    // Explosion particles
+    // MASSIVE explosion particles - fireballs
+    for _ in 0..120 {
+        let vel = vec3(
+            rand::gen_range(-15.0, 15.0),
+            rand::gen_range(3.0, 20.0),
+            rand::gen_range(-15.0, 15.0),
+        );
+        let colors = [ORANGE, YELLOW, RED, Color::new(1.0, 0.5, 0.0, 1.0)];
+        let color = colors[rand::gen_range(0, 4)];
+        world.particles.push(Particle {
+            pos, vel, color, life: rand::gen_range(0.5, 1.8), max_life: 1.8, size: rand::gen_range(0.3, 0.8)
+        });
+    }
+
+    // Smoke particles (slower, darker, longer lasting)
     for _ in 0..40 {
         let vel = vec3(
-            rand::gen_range(-8.0, 8.0),
-            rand::gen_range(2.0, 12.0),
-            rand::gen_range(-8.0, 8.0),
+            rand::gen_range(-5.0, 5.0),
+            rand::gen_range(1.0, 8.0),
+            rand::gen_range(-5.0, 5.0),
         );
-        let colors = [ORANGE, YELLOW, RED];
-        let color = colors[rand::gen_range(0, 3)];
         world.particles.push(Particle {
-            pos, vel, color, life: rand::gen_range(0.4, 1.2), max_life: 1.2, size: rand::gen_range(0.15, 0.4)
+            pos, vel, color: Color::new(0.3, 0.3, 0.3, 0.8), life: rand::gen_range(1.0, 2.5), max_life: 2.5, size: rand::gen_range(0.4, 1.0)
+        });
+    }
+
+    // Bright white-hot core flash particles
+    for _ in 0..20 {
+        let vel = vec3(
+            rand::gen_range(-20.0, 20.0),
+            rand::gen_range(5.0, 25.0),
+            rand::gen_range(-20.0, 20.0),
+        );
+        world.particles.push(Particle {
+            pos, vel, color: WHITE, life: rand::gen_range(0.1, 0.4), max_life: 0.4, size: rand::gen_range(0.5, 1.2)
         });
     }
 
@@ -1517,11 +1541,20 @@ fn render_3d(world: &World) {
         draw_cube(bar_pos + vec3((hp_pct - 1.0) * bar_w * 0.5, 0.0, 0.0), vec3(bar_w * hp_pct, 0.12, 0.12), None, RED);
     }
 
-    // Projectiles
+    // Projectiles (rockets with trail)
     for proj in &world.projectiles {
         if proj.explosive {
-            draw_sphere(proj.pos, 0.3, None, ORANGE);
-            draw_sphere(proj.pos - proj.vel.normalize() * 0.4, 0.2, None, RED);
+            // Rocket body
+            draw_sphere(proj.pos, 0.4, None, Color::new(0.3, 0.35, 0.3, 1.0));
+            // Glowing tip
+            draw_sphere(proj.pos + proj.vel.normalize() * 0.3, 0.25, None, ORANGE);
+            // Fiery trail
+            for i in 1..6 {
+                let trail_pos = proj.pos - proj.vel.normalize() * (i as f32 * 0.3);
+                let alpha = 1.0 - (i as f32 / 6.0);
+                let size = 0.35 - (i as f32 * 0.04);
+                draw_sphere(trail_pos, size, None, Color::new(1.0, 0.5 * alpha, 0.0, alpha));
+            }
         }
     }
 
@@ -2024,6 +2057,10 @@ fn window_conf() -> Conf {
         window_width: 1280,
         window_height: 720,
         fullscreen: false,
+        platform: miniquad::conf::Platform {
+            swap_interval: Some(0), // Disable vsync - uncapped FPS
+            ..Default::default()
+        },
         ..Default::default()
     }
 }
